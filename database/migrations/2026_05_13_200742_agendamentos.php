@@ -11,8 +11,8 @@ return new class extends Migration
     {
         Schema::create('agendamentos', function(Blueprint $table){
         $table->id('id_agendamento');
-        $table->foreignId('id_paciente')->constrained('pacientes')->onDelete('cascade');
-        $table->foreignId('id_medico')->constrained('medicos', 'id')->onDelete('cascade');
+        $table->foreignId('id_paciente')->constrained('pacientes', 'id_paciente')->onDelete('cascade');
+        $table->foreignId('id_medico')->constrained('medicos', 'id_medico')->onDelete('cascade');
         $table->date('data_consulta');
         $table->time('horario');
         $table->string('status')->default('pendente');

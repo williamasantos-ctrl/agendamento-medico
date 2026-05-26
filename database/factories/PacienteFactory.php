@@ -21,7 +21,7 @@ class PacienteFactory extends Factory
             'nome' => $this->faker->name(),
             'cpf' => $this->faker->numerify('###########'),
             'data_nascimento' => $this->faker->date('Y-m-d', '-18 years'),
-            'telefone' => $this->faker->unique()->safeEmail(),
+            'telefone' => $this->faker->numerify('(##)9###-####'),
             'email' => $this->faker->unique()->safeEmail(),
             'sexo' => $this->faker->randomElement(['M', 'F']),
         ];

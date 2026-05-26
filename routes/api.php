@@ -10,11 +10,16 @@ use App\Models\Paciente;
 use Database\Seeders\PacientesSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schedule;
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:sanctum');
 Route::prefix('v1')->group(function () {
+
+Schedule::command('consultas:enviar-lembretes')->dailyAt('08:00');
+
+Route::post('agendas/cancelar-turno', [AgendasController::class, 'cancelarTurno']);
 
 Route::resource('/pacientes', PacientesController::class);
 Route::resource('/agendamentos', AgendamentosController::class);

@@ -18,11 +18,11 @@ class Agendamento extends Model
         'status'
     ];
 
-    public function paciete(){
-        return $this->belongsTo(Paciente::class, 'id_paciente');
+    public function paciente(){
+        return $this->belongsTo(Paciente::class, 'id_paciente', 'id_paciente');
     }
 
     public function medico(){
-        return $this->belongsTo(Medico::class, 'id_medico');
+        return $this->belongsTo(Medico::class, 'id_medico', 'id_medico');
     }
 }

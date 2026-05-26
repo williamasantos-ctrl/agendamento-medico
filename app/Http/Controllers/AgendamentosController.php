@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DetalhesConsultaMail;
 use App\Models\Agendamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AgendamentosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
        return response()->json(Agendamento::with(['paciente', 'medico'])->get(), 200);
@@ -19,15 +19,20 @@ class AgendamentosController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'id_paciente' => 'required|exists:pacientes,id', 
-            'id_medico'   => 'required|exists:medicos,id',
-            'data_agendamento' => 'required|date|after_or_equal:today',
+            'id_paciente' => 'required|exists:pacientes,id_paciente', 
+            'id_medico'   => 'required|exists:medicos,id_medico',
+            'data_consulta' => 'required|date|after_or_equal:today',
             'horario'     => 'required',
             'status'      => 'string'
         ]);
 
         $agendamento = Agendamento::create($data);
         
+        $agendamento->load(['paciente', 'medico']);
+
+        if($agendamento->paciente->email){
+            Mail::to($agendamento->paciente->email)->send(new DetalhesConsultaMail($agendamento));
+        }
         return response()->json($agendamento->load(['paciente', 'medico']), 201);
     }
 

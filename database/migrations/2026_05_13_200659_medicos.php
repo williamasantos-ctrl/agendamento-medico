@@ -17,7 +17,7 @@ return new class extends Migration
         $table->string('crm')->unique();
         $table->string('telefone', 20);
         $table->string('email')->unique();
-        $table->foreignId('id_especialidade')->constrained('especialidades','id_especialidades')->onDelete('cascade');
+        $table->foreignId('id_especialidade')->constrained('especialidades','id_especialidade')->onDelete('cascade');
         $table->timestamps();
         });
     }

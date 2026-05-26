@@ -20,11 +20,9 @@ class Agenda extends Model
         'dia_semana'
     ];
 
-    /**
-     * Relacionamento: A agenda pertence a um médico
-     */
+    
     public function medico()
     {
-        return $this->belongsTo(Medico::class, 'id_medico', 'id');
+        return $this->belongsTo(Medico::class, 'id_medico', 'id_medico');
     }
 }

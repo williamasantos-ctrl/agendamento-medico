@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('agendas', function (Blueprint $table) {
         $table->id('id_agenda');
-        $table->foreignId('id_medico')->constrained('medicos', 'id')->onDelete('cascade');
+        $table->foreignId('id_medico')->constrained('medicos', 'id_medico')->onDelete('cascade');
         $table->time('horario_inicio');
         $table->time('horario_fim');
         $table->integer('duracao_consulta'); 
