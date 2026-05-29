@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Mail\DetalhesConsultaMail;
 use App\Models\Agendamento;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,9 +23,33 @@ class AgendamentosController extends Controller
             'id_paciente' => 'required|exists:pacientes,id_paciente', 
             'id_medico'   => 'required|exists:medicos,id_medico',
             'data_consulta' => 'required|date|after_or_equal:today',
-            'horario'     => 'required',
+            'horario'     => 'required|date_format:H:i',
             'status'      => 'string'
         ]);
+
+        $dataHoraConsulta = Carbon::parse(
+            $data['data_consulta']. ' '.$data['horario']
+        );
+
+        $limiteMinimo = Carbon::now()->addHours(24);
+
+        if($dataHoraConsulta < $limiteMinimo) {
+            return response()->json([
+                'message' => 'A consulta deve ser marcada com 24 horas de antecedência'
+            ], 422);
+        }
+
+        $conflito = Agendamento::where('id_medico', $data['id_medico'])
+        ->where('data_consulta', $data['data_consulta'])
+        ->where('horario', $data['horario'])
+        ->exists();
+
+        if ($conflito) {
+
+            return response()->json([
+                'message' => 'Este médico já possui um agendamento neste horário'
+            ], 409);
+        }
 
         $agendamento = Agendamento::create($data);
         
@@ -51,6 +76,12 @@ class AgendamentosController extends Controller
             'horario' => 'string',
             'status'  => 'string'
         ]);
+
+        if($agendamento->status === 'Realizada' && $data['status'] === 'Cancelado') {
+            return response()->json([
+                'message' => 'Uma consulta realizada não pode ser cancelada'
+            ], 422);
+        }
 
         $agendamento->update($data);
         return response()->json($agendamento);
