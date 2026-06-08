@@ -9,6 +9,8 @@ class Medico extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_medico';
+
     protected $fillable = ['nome','crm', 'telefone', 'email', 'id_especialidade'];
 
     public function agendamentos(){
@@ -16,7 +18,7 @@ class Medico extends Model
     }
 
     public function especialidades(){
-        return $this->belongsTo(Especialidade::class, 'id_especialidades');
+        return $this->belongsTo(Especialidade::class, 'id_especialidade');
     }
 
     public function agendas()

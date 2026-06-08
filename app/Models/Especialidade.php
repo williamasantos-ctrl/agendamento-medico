@@ -8,12 +8,12 @@ class Especialidade extends Model
 {
     protected $table = 'especialidades';
 
-    protected $primaryKey = 'id_especialidades';
+    protected $primaryKey = 'id_especialidade';
 
     protected $fillable = ['nome', 'descricao'];
 
     public function medicos()
     {
-        return $this->hasMany(Medico::class, 'id_especialidades');
+        return $this->hasMany(Medico::class, 'id_especialidade');
     }
 }
