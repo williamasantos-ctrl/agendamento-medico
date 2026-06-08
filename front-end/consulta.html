@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedFlash - Consulta</title>
+
+    <link rel="stylesheet" href="consulta.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>MedFlash</h1>
+
+</header>
+
+<main class="container">
+
+    <h2>Buscar Médico</h2>
+
+    <input
+        type="text"
+        id="pesquisa"
+        placeholder="Pesquisar médico ou especialidade">
+
+    <section id="listaMedicos">
+
+        <div class="card">
+
+            <h3>Dr. João Silva</h3>
+
+            <p>Cardiologista</p>
+
+            <p>⭐ 4.9</p>
+
+            <p>Hospital Santa Menefreda</p>
+
+            <button onclick="agendar('Dr. João Silva')">
+                Selecionar
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Dra. Ana Souza</h3>
+
+            <p>Oftalmologista</p>
+
+            <p>⭐ 4.8</p>
+
+            <p>Hospital Central</p>
+
+            <button onclick="agendar('Dra. Ana Souza')">
+                Selecionar
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Dr. Carlos Lima</h3>
+
+            <p>Cirurgião</p>
+
+            <p>⭐ 4.7</p>
+
+            <p>Hospital São José</p>
+
+            <button onclick="agendar('Dr. Carlos Lima')">
+                Selecionar
+            </button>
+
+        </div>
+
+    </section>
+
+    <section class="agendamento">
+
+        <h2>Dados da Consulta</h2>
+
+        <input
+            type="text"
+            id="medicoSelecionado"
+            placeholder="Selecione um médico"
+            readonly>
+
+        <input type="date" id="dataConsulta">
+
+        <input type="time" id="horaConsulta">
+
+        <input
+            type="text"
+            value="R$ 150,00"
+            readonly>
+
+    </section>
+
+    <section class="pagamento">
+
+        <h2>Pagamento</h2>
+
+        <select id="formaPagamento">
+
+            <option>Cartão de Crédito</option>
+
+            <option>Pix</option>
+
+            <option>Convênio</option>
+
+        </select>
+
+        <button id="btnPagamento">
+            Confirmar Pagamento
+        </button>
+
+    </section>
+
+    <section class="email">
+
+        <h2>Verificação de E-mail</h2>
+
+        <p>
+            Digite o código enviado para seu e-mail.
+        </p>
+
+        <input
+            type="text"
+            id="codigoEmail"
+            placeholder="Código">
+
+        <button id="btnVerificar">
+            Verificar Código
+        </button>
+
+    </section>
+
+    <section id="resultado">
+
+        <h2>Consulta Confirmada ✅</h2>
+
+        <p>
+            Seu agendamento foi realizado com sucesso.
+        </p>
+
+    </section>
+
+</main>
+
+<script src="consulta.js"></script>
+
+</body>
+</html>
