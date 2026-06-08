@@ -1,38 +1,78 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Med Flash - Login</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedFlash - Login</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <main class="container">
-    <section class="login-box">
+    <main class="container">
 
-  <div class="logo">
-  <img src="./imagens/Logo.png" alt="Logo">
-  </div>
+        <section class="login-box">
 
-      <form>
-        <label for="login">Login</label>
-        <input type="text" id="login" name="login" />
+            <div class="logo">
+                <img src="./imagens/Logo.png" alt="Logo MedFlash">
+            </div>
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" />
-        <p id="mensagemErro"></p>
+            <form id="loginForm">
 
-        <div class="botoes">
-          <button type="submit">Confirmar</button>
-          <button type="button">Esqueci a Senha</button>
-          <button type="button">Cadastro</button>
-        </div>
-      </form>
+                <label for="login">Login</label>
 
-    </section>
-  </main>
+                <input
+                    type="text"
+                    id="login"
+                    name="login"
+                    placeholder="Digite seu login">
 
-  <script src="./login.js"></script>
+                <label for="senha">Senha</label>
+
+                <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    placeholder="Digite sua senha">
+
+                <p id="mensagemErro"></p>
+
+                <div class="botoes">
+
+                    <div class="botoes">
+
+    <button type="submit" class="btn-confirmar">
+        Confirmar
+    </button>
+
+    <button
+        type="button"
+        class="btn-secundario"
+        onclick="window.location.href='esqueci_senha.html'">
+        Esqueci a Senha
+    </button>
+
+</div>
+
+<button
+    type="button"
+    class="btn-cadastro"
+    onclick="window.location.href='cadastro.html'">
+
+    Cadastro
+
+</button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script src="./login.js"></script>
+
 </body>
+
 </html>
